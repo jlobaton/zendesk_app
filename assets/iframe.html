@@ -5,14 +5,59 @@
   <link rel="stylesheet" href="https://assets.zendesk.com/apps/sdk-assets/css/2/zendesk_garden.css" type="text/css">
 </head>
 <body>
-  <h2 class="u-gamma">Hello, World!</h2>
+  <!-- h2 class="u-gamma">Hello, World!</h2 -->
   <!-- https://github.com/zendesk/zendesk_app_framework_sdk -->
   <script type="text/javascript" src="https://assets.zendesk.com/apps/sdk/2.0/zaf_sdk.js"></script>
+
   <script>
     // Initialise the Zendesk JavaScript API client
     // https://developer.zendesk.com/apps/docs/apps-v2
     var client = ZAFClient.init();
-    client.invoke('resize', { width: '100%', height: '200px' });
+    client.invoke('resize', { width: '100%', height: '300px' });
+
+/*
+    var client = ZAFClient.init();
+        client.get('ticket.requester').then(function(data) {
+        console.log(data); // { "ticket.requester.name": "Mikkel Svane" }
+    });
+*/
+/*
+   client.context().then(function(context){
+    console.log(context);
+   });
+*/
+
+client.get('currentUser').then(function(data){
+    console.log(data);
+});
+/*client.get(['ticket']).then(function(data) {
+  console.log(data); // { 'ticket.subject': 'Help, my printer is on fire' }
+});
+*/
+  client.metadata().then(function(metadata){
+   // console.log(metadata.settings);
+  });
+
+
   </script>
+
+
+<form id="ticket-form" name="ticket-form">
+  
+  <div class="u-cf u-mb">
+            <fieldset class="c-txt u-mb-sm">
+              <label class="c-txt__label" for="txt-2">Nombre: </label>
+              <small class="c-txt__hint">Coloque su nombre completo...</small>
+              <input class="c-txt__input" id="nombre" placeholder="" type="input">
+            </fieldset>  
+
+      <div class="u-cf u-mb">
+        <button class="c-btn" id="click2">Guardar</button>
+      </div>
+  </div>
+
+</form>
+
+
 </body>
 </html>
